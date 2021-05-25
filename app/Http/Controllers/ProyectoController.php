@@ -9,7 +9,7 @@ class ProyectoController extends Controller
 {
     public function index()
 {
-    $clase = Proyecto::paginate(5);
+    $clase = Proyecto::orderBy('id','desc')->paginate(5);
     
     return view('Proyecto.index',compact('clase'));
 }
@@ -27,9 +27,16 @@ public function show($id)
     return view('Proyecto.show', compact('curso'));
 }
 
-public function store($id)
+public function store(Request $request)
 {
-    
+    $proyec = new Proyecto();
+
+    $proyec->name = $request->name;
+    $proyec->descripcion = $request->descripcion;
+    $proyec->categoria = $request->categoria;
+
+    $proyec->save();
+    return redirect()->route('proyecto.show',$proyec->id);
 }
 
 }

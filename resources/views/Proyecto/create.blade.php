@@ -4,6 +4,8 @@
 @section('Content')
     <h1>bienvenido para crear</h1>
     <form action="{{route('proyecto.store')}}" method="POST">
+        @csrf
+        
         <label >
             <br>
             Nombre: 
