@@ -27,8 +27,42 @@ public function show($id)
     return view('Proyecto.show', compact('curso'));
 }
 
+public function edit($id)
+{
+    $proyect = Proyecto::find($id);
+
+    return view('Proyecto.edit',compact('proyect'));
+}
+
+public function update(Request $request, Proyecto $curso)
+{
+    //$curso = Proyecto::find($curso);
+
+    //return view('Proyecto.edit',compact('proyect'));
+    $request->validate([
+
+        'name' =>'required',
+        'descripcion' =>'required',
+        'categoria' =>'required'
+    ]);
+
+    $curso->name = $request->name;
+    $curso->descripcion = $request->descripcion;
+    $curso->categoria = $request->categoria;
+
+    $curso->save();
+    return redirect()->route('proyecto.show',$curso->id);
+}
+
 public function store(Request $request)
 {
+
+    $request->validate([
+
+        'name' =>'required|max:10',
+        'descripcion' =>'required|min:10',
+        'categoria' =>'required'
+    ]);
     $proyec = new Proyecto();
 
     $proyec->name = $request->name;

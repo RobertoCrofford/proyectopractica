@@ -24,4 +24,10 @@ Route::post('proyecto', [ProyectoController::class, 'store'])->name('proyecto.st
 
 Route::get('proyecto/{id}',[ProyectoController::class, 'show'] )->name('proyecto.show');// esta ruta llama a los controladores (show)
 
+Route::get('proyecto/{id}/edit', [ProyectoController::class, 'edit'])->name('proyecto.editar');
+
+//Route::put('proyecto/{id}', [ProyectoController::class, 'update'])->name('Proyecto.update');
+
+Route::put('proyecto/{curso}', [ProyectoController::class,'update'])->name('Proyecto.update');
+
 // para que funciones necesita los controladores ejemplo use App\Http\Controllers\ProyectoController;
